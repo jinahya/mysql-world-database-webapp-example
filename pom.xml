@@ -36,7 +36,15 @@
         <filtering>true</filtering>
       </resource>
     </resources>
-    <pluginManagement/>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.6</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.bsc.maven</groupId>
@@ -156,5 +164,35 @@
   <repositories />
   <pluginRepositories />
   <distributionManagement/>
-  <profiles/>
+  <profiles>
+    <profile>
+      <id>embedded-glassfish</id>
+      <properties>
+        <jta-data-source>java:app/jdbc/worldDS</jta-data-source>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.37</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+              <webResources>
+                <resource>
+                  <directory>src/main/webapp-embedded-glassfish</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </webResources>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
