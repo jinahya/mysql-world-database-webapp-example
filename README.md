@@ -1,6 +1,8 @@
 # mysql-world-database-webapp-example
 
 ## the world database
+* <a href="https://dev.mysql.com/doc/world-setup/en/">Setting Up the world Database</a>
+* <a href="https://dev.mysql.com/doc/index-other.html">Other MySQL Documentation</a>
 
 ## JPA/JAXB
 Three classes bound in `com.github.jinahya.example.mysql.world.persistence` package.
@@ -16,13 +18,13 @@ Three root resource classes defined in `com.github.jinahya.example.mysql.world.w
 
 |path                                          |description|
 |----------------------------------------------|-----------|
-|`/cities;countryCode=`                        ||
-|`/cities/{id: \\d+}`                          |select city whose id matches to given|
-|`/countries`                                  ||
-|`/countries/{code: [A-Z]{3}}`                 |select country whose code matches to given|
-|`/countries/{code: [A-Z]{3}}/cities`          |list all cities of a specific country|
-|`/countries/{code: [A-Z]{3}}/countryLanguages`|list all countryLanguages of a specific country|
-|`/countryLanguages;countryCode=`              ||
+|`/cities;countryCode=`                        |reads all cities|
+|`/cities/{id: \\d+}`                          |reads a city whose id matches to given|
+|`/countries`                                  |reads all countryLanguages|
+|`/countries/{code: [A-Z]{3}}`                 |reads a country whose code matches to given|
+|`/countries/{code: [A-Z]{3}}/cities`          |reads all cities of a specific country|
+|`/countries/{code: [A-Z]{3}}/countryLanguages`|reads all countryLanguages of a specific country|
+|`/countryLanguages;countryCode=`              |read all countryLanguages|
 
 ## deploying to an existing application server
 ````
