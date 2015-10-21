@@ -32,7 +32,7 @@ Use your own configured value for `-Djta-data-source` parameter.
 $ mvn -Djta-data-source=jdbc/worldDS
 ````
 
-## using embedded-glassfish
+## launching with an embedded-glassfish
 Use your own values for those `-Djdbc.xxx` paramters.
 ````
 $ mvn -Pembedded-glassfish \
