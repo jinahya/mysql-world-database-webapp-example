@@ -5,7 +5,7 @@
 ## resources paths
 |path                                          |description|
 |----------------------------------------------|-----------|
-|`/cities;countryCode=`                        ||
+|/cities;countryCode=                          ||
 |`/cities/{id: \\d+}`                          |select city whose id matches to given|
 |`/countries`                                  ||
 |`/countries/{code: [A-Z]{3}}`                 |select country whose code matches to given|
