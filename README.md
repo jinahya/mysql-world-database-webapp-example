@@ -13,6 +13,7 @@ Two classes defined in `com.github.jinahya.example.mysql.world.ejb` package.
 
 ## JAX-RS
 Three root resource classes defined in `com.github.jinahya.example.mysql.world.ws.rs` package.
+
 |path                                          |description|
 |----------------------------------------------|-----------|
 |`/cities;countryCode=`                        ||
