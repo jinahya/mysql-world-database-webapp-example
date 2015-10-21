@@ -27,11 +27,13 @@ Three root resource classes defined in `com.github.jinahya.example.mysql.world.w
 |`/countryLanguages;countryCode=`              |read all countryLanguages|
 
 ## deploying to an existing application server
+Use your own configured value for `-Djta-data-source` parameter.
 ````
 $ mvn -Djta-data-source=jdbc/worldDS
 ````
 
 ## using embedded-glassfish
+Use your own values for those `-Djdbc.xxx` paramters.
 ````
 $ mvn -Pembedded-glassfish \
 -Djdbc.url=jdbc:mysql://address:port/database \
