@@ -3,14 +3,15 @@
 ## the world database
 
 ## resources paths
-|path|
-|----|
-|`/countries`    |
-|`/countries/{code: [A-Z]{3}}`|
-|`/countries/{code: [A-Z]{3}}/countryLanguages`|
-|`/countries/{code: [A-Z]{3}}/cities`|
-|`/cities`|
-|`/countryLanguages`|
+|path                                          |description|
+|----------------------------------------------|-----------|
+|`/cities;countryCode=`                        |a|
+|`/cities/{id: \\d+}`                          |select city whose id matches to given|
+|`/countries`                                  |b|
+|`/countries/{code: [A-Z]{3}}`                 |select country whose code matches to given|
+|`/countries/{code: [A-Z]{3}}/countryLanguages`|list all countryLanguages of a specific country|
+|`/countries/{code: [A-Z]{3}}/cities`          |list all cities of a specific country|
+|`/countryLanguages`                           |b|
 
 ## deploying to an existing application server
 ````
