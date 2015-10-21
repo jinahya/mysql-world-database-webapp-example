@@ -10,7 +10,7 @@
 |path                                        |description|
 |--------------------------------------------|-----------|
 |/cities;countryCode=                        ||
-|/cities/{id: \\d+}                          |select city whose id matches to given|
+|/cities/{id: \\\\d+}                          |select city whose id matches to given|
 |/countries                                  ||
 |/countries/{code: [A-Z]{3}}                 |select country whose code matches to given|
 |/countries/{code: [A-Z]{3}}/cities          |list all cities of a specific country|
