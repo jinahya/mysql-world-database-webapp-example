@@ -5,13 +5,13 @@
 ## resources paths
 |path                                          |description|
 |----------------------------------------------|-----------|
-|`/cities;countryCode=`                        |a|
+|`/cities;countryCode=`                        ||
 |`/cities/{id: \\d+}`                          |select city whose id matches to given|
-|`/countries`                                  |b|
+|`/countries`                                  ||
 |`/countries/{code: [A-Z]{3}}`                 |select country whose code matches to given|
 |`/countries/{code: [A-Z]{3}}/countryLanguages`|list all countryLanguages of a specific country|
 |`/countries/{code: [A-Z]{3}}/cities`          |list all cities of a specific country|
-|`/countryLanguages`                           |b|
+|`/countryLanguages;countryCode=`              ||
 
 ## deploying to an existing application server
 ````
