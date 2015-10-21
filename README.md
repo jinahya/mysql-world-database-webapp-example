@@ -2,16 +2,20 @@
 
 ## the world database
 
-## resources paths
-|path                                          |description|
-|----------------------------------------------|-----------|
-|/cities;countryCode=                          ||
-|`/cities/{id: \\d+}`                          |select city whose id matches to given|
-|`/countries`                                  ||
-|`/countries/{code: [A-Z]{3}}`                 |select country whose code matches to given|
-|`/countries/{code: [A-Z]{3}}/cities`          |list all cities of a specific country|
-|`/countries/{code: [A-Z]{3}}/countryLanguages`|list all countryLanguages of a specific country|
-|`/countryLanguages;countryCode=`              ||
+## JAXB
+
+## EJB
+
+## JAX-RS
+|path                                        |description|
+|--------------------------------------------|-----------|
+|/cities;countryCode=                        ||
+|/cities/{id: \\d+}                          |select city whose id matches to given|
+|/countries                                  ||
+|/countries/{code: [A-Z]{3}}                 |select country whose code matches to given|
+|/countries/{code: [A-Z]{3}}/cities          |list all cities of a specific country|
+|/countries/{code: [A-Z]{3}}/countryLanguages|list all countryLanguages of a specific country|
+|/countryLanguages;countryCode=              ||
 
 ## deploying to an existing application server
 ````
