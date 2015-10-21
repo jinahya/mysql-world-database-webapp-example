@@ -18,7 +18,9 @@
 package com.github.jinahya.example.mysql.world.ws.rs;
 
 
+import com.github.jinahya.example.mysql.world.ejb.CityService;
 import com.github.jinahya.example.mysql.world.ejb.CountryLanguageService;
+import com.github.jinahya.example.mysql.world.persistence.City;
 import com.github.jinahya.example.mysql.world.persistence.Country;
 import com.github.jinahya.example.mysql.world.persistence.CountryLanguage;
 import com.github.jinahya.example.mysql.world.persistence.Country_;
@@ -55,13 +57,11 @@ public class CountriesResource {
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response read(
-        @QueryParam("first_result")
-        @DefaultValue("0")
-        @Min(0)
+        @QueryParam(WsRsConstants.PARAM_FIRST_RESULT)
+        @DefaultValue(WsRsConstants.DEFAULT_FIRST_RESULT) @Min(0)
         final Integer firstResult,
-        @QueryParam("max_results")
-        @DefaultValue("1024")
-        @Min(0)
+        @QueryParam(WsRsConstants.PARAM_MAX_RESULTS)
+        @DefaultValue(WsRsConstants.DEFAULT_MAX_RESULTS) @Min(0)
         final Integer maxResults) {
 
         final CriteriaBuilder builder = entityManager.getCriteriaBuilder();
@@ -76,11 +76,9 @@ public class CountriesResource {
         if (firstResult != null) {
             query.setFirstResult(firstResult);
         }
-        //ofNullable(firstResult).ifPresent(v -> query.setFirstResult(v));
         if (maxResults != null) {
             query.setMaxResults(maxResults);
         }
-        //ofNullable(maxResults).ifPresent(v -> query.setMaxResults(v));
         final List<Country> list = query.getResultList();
 
         final GenericEntity<List<Country>> entity
@@ -123,12 +121,18 @@ public class CountriesResource {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response readSingleCities(
         @PathParam("code")
-        final String countryCode) {
+        final String countryCode,
+        @QueryParam(WsRsConstants.PARAM_FIRST_RESULT)
+        @DefaultValue(WsRsConstants.DEFAULT_FIRST_RESULT) @Min(0)
+        final Integer firstResult,
+        @QueryParam(WsRsConstants.PARAM_MAX_RESULTS)
+        @DefaultValue(WsRsConstants.DEFAULT_MAX_RESULTS) @Min(0)
+        final Integer maxResults) {
 
-        final List<CountryLanguage> list
-            = countryLanguageService.list(countryCode, null, null);
-        final GenericEntity<List<CountryLanguage>> entity
-            = new GenericEntity<List<CountryLanguage>>(list) {
+        final List<City> list = cityService.list(
+            countryCode, firstResult, maxResults);
+        final GenericEntity<List<City>> entity
+            = new GenericEntity<List<City>>(list) {
             };
 
         return Response.ok(entity).build();
@@ -140,10 +144,16 @@ public class CountriesResource {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response readSingleLanguages(
         @PathParam("code")
-        final String countryCode) {
+        final String countryCode,
+        @QueryParam(WsRsConstants.PARAM_FIRST_RESULT)
+        @DefaultValue(WsRsConstants.DEFAULT_FIRST_RESULT) @Min(0)
+        final Integer firstResult,
+        @QueryParam(WsRsConstants.PARAM_MAX_RESULTS)
+        @DefaultValue(WsRsConstants.DEFAULT_MAX_RESULTS) @Min(0)
+        final Integer maxResults) {
 
-        final List<CountryLanguage> list
-            = countryLanguageService.list(countryCode, null, null);
+        final List<CountryLanguage> list = countryLanguageService.list(
+            countryCode, firstResult, maxResults);
         final GenericEntity<List<CountryLanguage>> entity
             = new GenericEntity<List<CountryLanguage>>(list) {
             };
@@ -154,6 +164,10 @@ public class CountriesResource {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+
+    @EJB
+    private CityService cityService;
 
 
     @EJB

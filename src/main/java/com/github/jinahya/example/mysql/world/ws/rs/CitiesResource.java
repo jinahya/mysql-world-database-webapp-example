@@ -18,14 +18,18 @@
 package com.github.jinahya.example.mysql.world.ws.rs;
 
 
-import com.github.jinahya.example.mysql.world.ejb.CountryLanguageService;
-import com.github.jinahya.example.mysql.world.persistence.CountryLanguage;
+import com.github.jinahya.example.mysql.world.ejb.CityService;
+import com.github.jinahya.example.mysql.world.persistence.City;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.constraints.Min;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
@@ -41,8 +45,8 @@ import javax.ws.rs.core.UriInfo;
  *
  * @author Jin Kwon &lt;onacit at gmail.com&gt;
  */
-@Path("/countryLanguages")
-public class CountryLanguagesResource {
+@Path("/cities")
+public class CitiesResource {
 
 
     @GET
@@ -60,23 +64,41 @@ public class CountryLanguagesResource {
             = root.getMatrixParameters();
         final String countryCode = matrixParameters.getFirst("countryCode");
 
-        final List<CountryLanguage> list = countryLanguageService.list(
+        final List<City> list = cityService.list(
             countryCode, firstResult, maxResults);
 
-        final GenericEntity<List<CountryLanguage>> entity
-            = new GenericEntity<List<CountryLanguage>>(list) {
+        final GenericEntity<List<City>> entity
+            = new GenericEntity<List<City>>(list) {
             };
 
         return Response.ok(entity).build();
     }
 
 
-    @Context
-    private UriInfo uriInfo;
+    @GET
+    @Path("/{id: \\d+}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response read(@PathParam("id") final int id) {
+
+        final City city = entityManager.find(City.class, id);
+        if (city == null) {
+            throw new NotFoundException();
+        }
+
+        return Response.ok(city).build();
+    }
+
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
 
     @EJB
-    private CountryLanguageService countryLanguageService;
+    private CityService cityService;
+
+
+    @Context
+    private UriInfo uriInfo;
 
 
 }

@@ -19,10 +19,8 @@ package com.github.jinahya.example.mysql.world.persistence;
 
 
 import java.io.Serializable;
-import javax.persistence.AttributeConverter;
 import javax.persistence.Column;
 import javax.persistence.Convert;
-import javax.persistence.Converter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -45,34 +43,12 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @Entity
 @Table(name = "CountryLanguage")
 @XmlRootElement
-@XmlType(propOrder = {"language", "official", "percentage"})
+@XmlType(propOrder = {"language", "isOfficial", "percentage"})
 public class CountryLanguage implements Serializable {
 
 
-    @Converter
-    public static class OfficialConverter
-        implements AttributeConverter<Boolean, String> {
-
-
-        @Override
-        public String convertToDatabaseColumn(final Boolean attribute) {
-
-            return attribute ? "T" : "F";
-        }
-
-
-        @Override
-        public Boolean convertToEntityAttribute(final String dbData) {
-
-            return "T".equals(dbData);
-        }
-
-
-    }
-
-
     @XmlAttribute
-    public String getContryCode() {
+    public String getCountryCode() {
 
         if (country == null) {
             return null;
@@ -97,10 +73,10 @@ public class CountryLanguage implements Serializable {
 
 
     @Column(name = "IsOfficial")
-    @Convert(converter = OfficialConverter.class)
+    @Convert(converter = BooleanTFConverter.class)
     @NotNull
     @XmlElement(required = true)
-    private Boolean official;
+    private Boolean isOfficial;
 
 
     @Column(name = "Percentage")

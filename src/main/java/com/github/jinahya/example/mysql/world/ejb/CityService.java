@@ -50,30 +50,27 @@ public class CityService {
 
         final CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 
-        final CriteriaQuery<City> criteria
-            = builder.createQuery(City.class);
+        final CriteriaQuery<City> criteria = builder.createQuery(City.class);
+
         final Root<City> from = criteria.from(City.class);
         criteria.select(from);
         final Path<Country> country = from.get(City_.country);
         if (countryCode != null) {
-            criteria.where(
-                builder.equal(country.get(Country_.code), countryCode));
-        } else {
-            criteria.orderBy(builder.asc(country.get(Country_.code)),
-                             builder.asc(from.get(City_.district)));
+            criteria.where(builder.equal(
+                country.get(Country_.code), countryCode));
         }
+        criteria.orderBy(builder.asc(country.get(Country_.code)),
+                         builder.asc(from.get(City_.name)));
 
-        final TypedQuery<City> query
-            = entityManager.createQuery(criteria);
+        final TypedQuery<City> query = entityManager.createQuery(criteria);
         if (firstResult != null) {
             query.setFirstResult(firstResult);
         }
         if (maxResults != null) {
             query.setMaxResults(maxResults);
         }
-        final List<City> list = query.getResultList();
 
-        return list;
+        return query.getResultList();
     }
 
 

@@ -54,12 +54,13 @@ public class CountryLanguageService {
             = builder.createQuery(CountryLanguage.class);
         final Root<CountryLanguage> from = criteria.from(CountryLanguage.class);
         criteria.select(from);
+        final Path<Country> country = from.get(CountryLanguage_.country);
         if (countryCode != null) {
-            final Path<Country> country = from.get(CountryLanguage_.country);
-            criteria.where(
-                builder.like(country.get(Country_.code), countryCode));
+            criteria.where(builder.equal(
+                country.get(Country_.code), countryCode));
         }
-        criteria.orderBy(builder.desc(from.get(CountryLanguage_.percentage)));
+        criteria.orderBy(builder.asc(country.get(Country_.code)),
+                         builder.asc(from.get(CountryLanguage_.language)));
 
         final TypedQuery<CountryLanguage> query
             = entityManager.createQuery(criteria);
@@ -69,9 +70,8 @@ public class CountryLanguageService {
         if (maxResults != null) {
             query.setMaxResults(maxResults);
         }
-        final List<CountryLanguage> list = query.getResultList();
 
-        return list;
+        return query.getResultList();
     }
 
 

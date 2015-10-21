@@ -48,7 +48,7 @@ public class City {
 
 
     @XmlAttribute
-    public String getContryCode() {
+    public String getCountryCode() {
 
         if (country == null) {
             return null;
@@ -88,7 +88,6 @@ public class City {
 
     @Column(name = "Population")
     @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     private int population;
 
 
