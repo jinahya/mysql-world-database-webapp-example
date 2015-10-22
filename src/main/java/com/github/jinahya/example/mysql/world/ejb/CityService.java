@@ -42,6 +42,15 @@ import javax.validation.constraints.Min;
 public class CityService {
 
 
+    /**
+     * Selects all or specified range of cities.
+     *
+     * @param countryCode the {@code country.code} to filter or {@code null}
+     * @param firstResult first result index
+     * @param maxResults max result count
+     *
+     * @return a list of {@code City}.
+     */
     public List<City> list(final String countryCode,
                            @Min(0)
                            final Integer firstResult,
