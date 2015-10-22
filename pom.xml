@@ -47,6 +47,16 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <tagNameFormat>@{project.version}</tagNameFormat>
+          <pushChanges>false</pushChanges>
+          <localCheckout>true</localCheckout>
+          <goals>install</goals>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.bsc.maven</groupId>
         <artifactId>maven-processor-plugin</artifactId>
         <version>3.1.0-beta1</version>
@@ -79,9 +89,9 @@
         <executions>
           <execution>
             <id>check-signature-java17</id>
-            <phase>process-classes</phase> <!-- default -->
+            <phase>process-classes</phase>
             <goals>
-              <goal>check</goal>
+              <!--<goal>check</goal>-->
             </goals>
             <configuration>
               <signature>
