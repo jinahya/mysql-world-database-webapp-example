@@ -29,7 +29,7 @@ Three root resource classes defined in `com.github.jinahya.example.mysql.world.w
 ## deploying to an existing application server
 Use your own configured value for `-Djta-data-source` parameter.
 ````
-$ mvn -Djta-data-source=jdbc/worldDS
+$ mvn -Djta-data-source=jdbc/worldDS clean package
 ````
 
 ## launching with an embedded-glassfish
