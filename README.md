@@ -8,7 +8,7 @@
 Three classes bound in `com.github.jinahya.example.mysql.world.persistence` package.
 * [`City`](src/main/java/com/github/jinahya/example/mysql/world/persistence/City.java)
 * [`Country`](src/main/java/com/github/jinahya/example/mysql/world/persistence/Country.java)
-* [`CountryLanguage`]((src/main/java/com/github/jinahya/example/mysql/world/persistence/CountryLanguage.java)
+* [`CountryLanguage`](src/main/java/com/github/jinahya/example/mysql/world/persistence/CountryLanguage.java)
 
 ## EJB
 Two classes defined in `com.github.jinahya.example.mysql.world.ejb` package.
