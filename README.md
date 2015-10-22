@@ -6,9 +6,9 @@
 
 ## JPA/JAXB
 Three classes bound in `com.github.jinahya.example.mysql.world.persistence` package.
-* `City`
-* `Country`
-* `CountryLanguage`
+* [`City`](src/main/java/com/github/jinahya/example/mysql/world/persistence/City.java)
+* [`Country`](src/main/java/com/github/jinahya/example/mysql/world/persistence/Country.java)
+* [`CountryLanguage`](src/main/java/com/github/jinahya/example/mysql/world/persistence/CountryLanguage.java)
 
 ## EJB
 Two classes defined in `com.github.jinahya.example.mysql.world.ejb` package.
@@ -20,7 +20,7 @@ Three root resource classes defined in `com.github.jinahya.example.mysql.world.w
 |----------------------------------------------|-----------|
 |`/cities;countryCode=`                        |reads all cities|
 |`/cities/{id: \\d+}`                          |reads a city whose id matches to given|
-|`/countries`                                  |reads all countryLanguages|
+|`/countries`                                  |reads all countries|
 |`/countries/{code: [A-Z]{3}}`                 |reads a country whose code matches to given|
 |`/countries/{code: [A-Z]{3}}/cities`          |reads all cities of a specific country|
 |`/countries/{code: [A-Z]{3}}/countryLanguages`|reads all countryLanguages of a specific country|
@@ -29,7 +29,7 @@ Three root resource classes defined in `com.github.jinahya.example.mysql.world.w
 ## deploying to an existing application server
 Use your own configured value for `-Djta-data-source` parameter.
 ````
-$ mvn -Djta-data-source=jdbc/worldDS
+$ mvn -Djta-data-source=jdbc/worldDS clean package
 ````
 
 ## launching with an embedded-glassfish
