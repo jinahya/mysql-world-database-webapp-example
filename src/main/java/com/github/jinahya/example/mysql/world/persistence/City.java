@@ -18,6 +18,7 @@
 package com.github.jinahya.example.mysql.world.persistence;
 
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @Table(name = "City")
 @XmlRootElement
 @XmlType(propOrder = {"name", "district", "population"})
-public class City {
+public class City implements Serializable {
 
 
     @XmlAttribute
@@ -73,8 +74,9 @@ public class City {
     private String name;
 
 
-    @JoinColumn(name = "CountryCode", referencedColumnName = "Code")
+    @JoinColumn(name = "CountryCode", nullable = false)
     @ManyToOne
+    @NotNull
     @XmlTransient
     private Country country;
 
