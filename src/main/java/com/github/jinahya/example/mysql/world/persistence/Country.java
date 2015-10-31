@@ -132,7 +132,7 @@ public class Country implements Serializable {
     @Column(name = "Continent")
     @Convert(converter = ContinentConverter.class)
     @XmlElement(required = true)
-    private Continent continent;
+    private Continent continent = Continent.ASIA;
 
 
     @Column(name = "Region")

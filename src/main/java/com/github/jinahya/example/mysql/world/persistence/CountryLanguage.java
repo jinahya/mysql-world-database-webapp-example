@@ -23,8 +23,8 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -58,13 +58,14 @@ public class CountryLanguage implements Serializable {
     }
 
 
-    @PrimaryKeyJoinColumn(name = "CountryCode", referencedColumnName = "Code")
+    @Id
+    @JoinColumn(name = "CountryCode", nullable = false)
     @ManyToOne
     @XmlTransient
     private Country country;
 
 
-    @Column(name = "Language")
+    @Column(name = "Language", nullable = false)
     @Id
     @NotNull
     @XmlElement(required = true)
@@ -72,14 +73,14 @@ public class CountryLanguage implements Serializable {
     private String language;
 
 
-    @Column(name = "IsOfficial")
+    @Column(name = "IsOfficial", nullable = false)
     @Convert(converter = BooleanTFConverter.class)
     @NotNull
     @XmlElement(required = true)
     private Boolean isOfficial;
 
 
-    @Column(name = "Percentage")
+    @Column(name = "Percentage", nullable = false)
     @XmlElement(required = true)
     private float percentage;
 
