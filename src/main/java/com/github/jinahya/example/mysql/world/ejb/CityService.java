@@ -69,7 +69,7 @@ public class CityService {
                 country.get(Country_.code), countryCode));
         }
         criteria.orderBy(builder.asc(country.get(Country_.code)),
-                         builder.asc(from.get(City_.name)));
+                         builder.desc(from.get(City_.population)));
 
         final TypedQuery<City> query = entityManager.createQuery(criteria);
         if (firstResult != null) {

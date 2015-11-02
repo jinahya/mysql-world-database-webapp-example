@@ -21,6 +21,7 @@ package com.github.jinahya.example.mysql.world.ws.rs;
 import com.github.jinahya.example.mysql.world.ejb.CityService;
 import com.github.jinahya.example.mysql.world.persistence.City;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -49,6 +50,16 @@ import javax.ws.rs.core.UriInfo;
 public class CitiesResource {
 
 
+    @PostConstruct
+    private void constructed() {
+
+        final PathSegment rootPath = uriInfo.getPathSegments().get(0);
+        final MultivaluedMap<String, String> matrixParameters
+            = rootPath.getMatrixParameters();
+        countryCode = matrixParameters.getFirst("countryCode");
+    }
+
+
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response read(
@@ -58,11 +69,6 @@ public class CitiesResource {
         @QueryParam(WsRsConstants.PARAM_MAX_RESULTS)
         @DefaultValue(WsRsConstants.DEFAULT_MAX_RESULTS) @Min(0)
         final Integer maxResults) {
-
-        final PathSegment root = uriInfo.getPathSegments().get(0);
-        final MultivaluedMap<String, String> matrixParameters
-            = root.getMatrixParameters();
-        final String countryCode = matrixParameters.getFirst("countryCode");
 
         final List<City> list = cityService.list(
             countryCode, firstResult, maxResults);
@@ -99,6 +105,9 @@ public class CitiesResource {
 
     @Context
     private UriInfo uriInfo;
+
+
+    private transient String countryCode;
 
 
 }

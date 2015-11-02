@@ -60,7 +60,7 @@ public class CountryLanguageService {
                 country.get(Country_.code), countryCode));
         }
         criteria.orderBy(builder.asc(country.get(Country_.code)),
-                         builder.asc(from.get(CountryLanguage_.language)));
+                         builder.desc(from.get(CountryLanguage_.percentage)));
 
         final TypedQuery<CountryLanguage> query
             = entityManager.createQuery(criteria);
