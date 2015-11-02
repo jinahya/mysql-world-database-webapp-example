@@ -21,6 +21,7 @@ package com.github.jinahya.example.mysql.world.ws.rs;
 import com.github.jinahya.example.mysql.world.ejb.CountryLanguageService;
 import com.github.jinahya.example.mysql.world.persistence.CountryLanguage;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.validation.constraints.Min;
 import javax.ws.rs.DefaultValue;
@@ -45,6 +46,16 @@ import javax.ws.rs.core.UriInfo;
 public class CountryLanguagesResource {
 
 
+    @PostConstruct
+    private void constructed() {
+
+        final PathSegment rootPath = uriInfo.getPathSegments().get(0);
+        final MultivaluedMap<String, String> matrixParameters
+            = rootPath.getMatrixParameters();
+        countryCode = matrixParameters.getFirst("countryCode");
+    }
+
+
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response read(
@@ -54,11 +65,6 @@ public class CountryLanguagesResource {
         @QueryParam(WsRsConstants.PARAM_MAX_RESULTS)
         @DefaultValue(WsRsConstants.DEFAULT_MAX_RESULTS) @Min(0)
         final Integer maxResults) {
-
-        final PathSegment root = uriInfo.getPathSegments().get(0);
-        final MultivaluedMap<String, String> matrixParameters
-            = root.getMatrixParameters();
-        final String countryCode = matrixParameters.getFirst("countryCode");
 
         final List<CountryLanguage> list = countryLanguageService.list(
             countryCode, firstResult, maxResults);
@@ -77,6 +83,9 @@ public class CountryLanguagesResource {
 
     @EJB
     private CountryLanguageService countryLanguageService;
+
+
+    private transient String countryCode;
 
 
 }
