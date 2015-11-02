@@ -18,13 +18,14 @@ Three root resource classes defined in `com.github.jinahya.example.mysql.world.w
 
 |path                                          |description|
 |----------------------------------------------|-----------|
+|`/world.xsd`                                  |reads XML Schema|
 |`/cities;countryCode=`                        |reads all cities|
 |`/cities/{id: \\d+}`                          |reads a city whose id matches to given|
 |`/countries`                                  |reads all countries|
 |`/countries/{code: [A-Z]{3}}`                 |reads a country whose code matches to given|
 |`/countries/{code: [A-Z]{3}}/cities`          |reads all cities of a specific country|
 |`/countries/{code: [A-Z]{3}}/countryLanguages`|reads all countryLanguages of a specific country|
-|`/countryLanguages;countryCode=`              |read all countryLanguages|
+|`/countryLanguages;countryCode=`              |reads all countryLanguages|
 
 ## deploying to an existing application server
 Use your own configured value for `-Djta-data-source` parameter.
