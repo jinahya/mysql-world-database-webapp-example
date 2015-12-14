@@ -18,6 +18,12 @@ three root resource classes defined in `com.github.jinahya.example.mysql.world.w
 |`/api/countries/{code: [A-Z]{3}}/countryLanguages`|reads all countryLanguages of a specific country|
 |`/api/countryLanguages;countryCode=`              |reads all countryLanguages|
 
+## swagger-ui
+
+|path                                          |description|
+|----------------------------------------------|-----------|
+|`/swagger-ui`                                 ||
+
 ## deploying to an existing application server
 use your own configured value for `-Djta-data-source` parameter.
 ````
@@ -33,3 +39,8 @@ $ mvn -Pembedded-glassfish \
 -Djdbc.password=password \
 clean package embedded-glassfish:run
 ````
+browse following url.
+```
+http://localhost:8080/world/api/...
+http://localhost:8080/world/swagger-ui
+```
