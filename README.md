@@ -4,37 +4,34 @@
 * <a href="https://dev.mysql.com/doc/world-setup/en/">Setting Up the world Database</a>
 * <a href="https://dev.mysql.com/doc/index-other.html">Other MySQL Documentation</a>
 
-## JPA/JAXB
-Three classes bound in `com.github.jinahya.example.mysql.world.persistence` package.
-* [`City`](src/main/java/com/github/jinahya/example/mysql/world/persistence/City.java)
-* [`Country`](src/main/java/com/github/jinahya/example/mysql/world/persistence/Country.java)
-* [`CountryLanguage`](src/main/java/com/github/jinahya/example/mysql/world/persistence/CountryLanguage.java)
-
-## EJB
-Two classes defined in `com.github.jinahya.example.mysql.world.ejb` package.
-
-## JAX-RS
-Three root resource classes defined in `com.github.jinahya.example.mysql.world.ws.rs` package.
+## resources
+three root resource classes defined in `com.github.jinahya.example.mysql.world.ws.rs` package.
 
 |path                                          |description|
 |----------------------------------------------|-----------|
-|`/world.xsd`                                  |reads XML Schema|
-|`/cities;countryCode=`                        |reads all cities|
-|`/cities/{id: \\d+}`                          |reads a city whose id matches to given|
-|`/countries`                                  |reads all countries|
-|`/countries/{code: [A-Z]{3}}`                 |reads a country whose code matches to given|
-|`/countries/{code: [A-Z]{3}}/cities`          |reads all cities of a specific country|
-|`/countries/{code: [A-Z]{3}}/countryLanguages`|reads all countryLanguages of a specific country|
-|`/countryLanguages;countryCode=`              |reads all countryLanguages|
+|`/api/world.xsd`                                  |reads XML Schema|
+|`/api/cities;countryCode=`                        |reads all cities|
+|`/api/cities/{id: \\d+}`                          |reads a city whose id matches to given|
+|`/api/countries`                                  |reads all countries|
+|`/api/countries/{code: [A-Z]{3}}`                 |reads a country whose code matches to given|
+|`/api/countries/{code: [A-Z]{3}}/cities`          |reads all cities of a specific country|
+|`/api/countries/{code: [A-Z]{3}}/countryLanguages`|reads all countryLanguages of a specific country|
+|`/api/countryLanguages;countryCode=`              |reads all countryLanguages|
+
+## swagger-ui
+
+|path                                          |description|
+|----------------------------------------------|-----------|
+|`/swagger-ui`                                 ||
 
 ## deploying to an existing application server
-Use your own configured value for `-Djta-data-source` parameter.
+use your own configured value for `-Djta-data-source` parameter.
 ````
 $ mvn -Djta-data-source=jdbc/worldDS clean package
 ````
 
 ## launching with an embedded-glassfish
-Use your own values for those `-Djdbc.xxx` paramters.
+use your own values for those `-Djdbc.xxx` paramters.
 ````
 $ mvn -Pembedded-glassfish \
 -Djdbc.url=jdbc:mysql://address:port/database \
@@ -42,3 +39,8 @@ $ mvn -Pembedded-glassfish \
 -Djdbc.password=password \
 clean package embedded-glassfish:run
 ````
+browse following url.
+```
+http://localhost:8080/world/api/...
+http://localhost:8080/world/swagger-ui
+```
