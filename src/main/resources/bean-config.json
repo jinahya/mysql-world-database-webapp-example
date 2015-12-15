@@ -1,12 +1,12 @@
 {
-  "basePath": "world/api",
-  "description": "description",
-  "host": "localhost:8080",
-  "resourcePackage": "com.github.jinahya.mysql.world.ws.rs",
-  "scan": true,
-  "schemes": ["http"],
-  "version": "${project.version}",
-  "info": {
-    "title": "MySQL World Database API"
-  }
+"basePath": "${swagger.config.basePath}",
+        "description": "description",
+        "host": "${swagger.config.host}",
+        "resourcePackage": "com.github.jinahya.mysql.world.ws.rs",
+        "scan": true,
+        "schemes": [${swagger.config.schemes}],
+        "version": "${api.version}",
+        "info": {
+        "title": "MySQL World Database API"
+        }
 }
