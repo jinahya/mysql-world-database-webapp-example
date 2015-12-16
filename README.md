@@ -7,22 +7,18 @@
 ## resources
 three root resource classes defined in `com.github.jinahya.example.mysql.world.ws.rs` package.
 
-|path                                          |description|
-|----------------------------------------------|-----------|
-|`/api/world.xsd`                                  |reads XML Schema|
-|`/api/cities;countryCode=`                        |reads all cities|
-|`/api/cities/{id: \\d+}`                          |reads a city whose id matches to given|
-|`/api/countries`                                  |reads all countries|
-|`/api/countries/{code: [A-Z]{3}}`                 |reads a country whose code matches to given|
-|`/api/countries/{code: [A-Z]{3}}/cities`          |reads all cities of a specific country|
+|path                                              |description                                     |
+|--------------------------------------------------|------------------------------------------------|
+|`/api/swagger.json`                               |                                                |
+|`/api/swagger-ui`                                 |redirect to `/swagger-ui` with valid `?url=`    |
+|`/api/world.xsd`                                  |reads XML Schema                                |
+|`/api/cities;countryCode=`                        |reads all cities                                |
+|`/api/cities/{id: \\d+}`                          |reads a city whose id matches to given          |
+|`/api/countries`                                  |reads all countries                             |
+|`/api/countries/{code: [A-Z]{3}}`                 |reads a country whose code matches to given     |
+|`/api/countries/{code: [A-Z]{3}}/cities`          |reads all cities of a specific country          |
 |`/api/countries/{code: [A-Z]{3}}/countryLanguages`|reads all countryLanguages of a specific country|
-|`/api/countryLanguages;countryCode=`              |reads all countryLanguages|
-
-## swagger-ui
-
-|path                                          |description|
-|----------------------------------------------|-----------|
-|`/swagger-ui`                                 ||
+|`/api/countryLanguages;countryCode=`              |reads all countryLanguages                      |
 
 ## deploying to an existing application server
 use your own configured value for `-Djta-data-source` parameter.
@@ -42,5 +38,6 @@ clean package embedded-glassfish:run
 browse following url.
 ```
 http://localhost:8080/world/api/...
-http://localhost:8080/world/swagger-ui
+http://localhost:8080/world/api/swagger.json
+http://localhost:8080/world/api/swagger-ui
 ```
