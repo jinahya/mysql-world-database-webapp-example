@@ -33,7 +33,7 @@ import javax.ws.rs.core.UriInfo;
  * @author Jin Kwon &lt;onacit at gmail.com&gt;
  */
 @Path("/swagger-ui")
-public class SwaggerUiResource {
+public class SwaggerUiRedirector {
 
 
     @GET
