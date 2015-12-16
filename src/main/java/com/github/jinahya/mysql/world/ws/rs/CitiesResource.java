@@ -90,10 +90,15 @@ public class CitiesResource {
     }
 
 
-    @ApiOperation(value = "Reads a city identified by {id}",
-                  response = City.class)
+    @ApiOperation(
+        value = "Reads a city identified by {id}",
+        response = City.class
+    )
     @ApiResponses(
-        @ApiResponse(code = 404, message = "No city identified by {id}")
+        @ApiResponse(
+            code = 404,
+            message = "No city identified by {id}"
+        )
     )
     @GET
     @Path("/{id: \\d+}")

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -11,7 +10,7 @@
 
   <groupId>com.github.jinahya</groupId>
   <artifactId>mysql-world-database-webapp-example</artifactId>
-  <version>0.4</version>
+  <version>0.5.0</version>
   <packaging>war</packaging>
 
   <name>${project.artifactId}</name>
@@ -23,7 +22,7 @@
     <connection>scm:git:git@github.com:jinahya/${project.artifactId}.git</connection>
     <developerConnection>scm:git:git@github.com:jinahya/${project.artifactId}.git</developerConnection>
     <url>https://github.com/jinahya/${project.artifactId}</url>
-    <tag>0.4</tag>
+    <tag>0.5.0</tag>
   </scm>
   <issueManagement>
     <system>GitHub Issues</system>
@@ -36,9 +35,9 @@
     <maven.compiler.testSource>1.8</maven.compiler.testSource>
     <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
     <jta-data-source>jdbc/worldDS</jta-data-source>
-    <swagger.api.version>1.0.0</swagger.api.version>
-    <swagger.api.basepath>http://localhost:8080/world/api</swagger.api.basepath>
-    <swagger.ui.url>${swagger.api.basepath}/swagger.json</swagger.ui.url>
+    <swagger.config.schemes>"http", "https"</swagger.config.schemes>
+    <swagger.config.host>localhost:8080</swagger.config.host>
+    <swagger.config.basePath>world/api</swagger.config.basePath>
   </properties>
 
   <dependencyManagement>
@@ -46,7 +45,7 @@
       <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
-        <version>5.1.37</version>
+        <version>5.1.38</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -59,7 +58,6 @@
     </dependency>
     <dependency>
       <groupId>io.swagger</groupId>
-      <!--<artifactId>swagger-jersey2-jaxrs</artifactId>-->
       <artifactId>swagger-jaxrs</artifactId>
       <version>1.5.4</version>
       <scope>compile</scope>
