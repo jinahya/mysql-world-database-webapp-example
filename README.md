@@ -5,7 +5,6 @@
 * <a href="https://dev.mysql.com/doc/index-other.html">Other MySQL Documentation</a>
 
 ## resources
-three root resource classes defined in `com.github.jinahya.example.mysql.world.ws.rs` package.
 
 |path                                              |description                                     |
 |--------------------------------------------------|------------------------------------------------|
