@@ -1,0 +1,7 @@
+{
+"schemes": [${swagger.config.schemes}],
+        "host": "${swagger.config.host}",
+        "basePath": "${swagger.config.basePath}",
+        "resourcePackage": "com.github.jinahya.mysql.world.ws.rs",
+        "scan": true
+}

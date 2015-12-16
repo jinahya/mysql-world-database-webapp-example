@@ -20,18 +20,10 @@ package com.github.jinahya.mysql.world.ws.rs.core;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
-import com.github.jinahya.mysql.world.ws.rs.CitiesResource;
-import com.github.jinahya.mysql.world.ws.rs.CountriesResource;
-import com.github.jinahya.mysql.world.ws.rs.CountryLanguagesResource;
-import com.github.jinahya.mysql.world.ws.rs.WorldXsdResource;
 import io.swagger.jaxrs.config.BeanConfig;
-import io.swagger.jaxrs.listing.ApiListingResource;
-import io.swagger.jaxrs.listing.SwaggerSerializers;
 import io.swagger.util.Json;
 import io.swagger.util.Yaml;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
@@ -48,41 +40,17 @@ public class WorldApplication extends Application {
 
         super();
 
-//        BeanConfig beanConfig = new BeanConfig();
-//        beanConfig.setTitle("world");
-//        beanConfig.setVersion("1.0.0");
-//        beanConfig.setSchemes(new String[]{"http"});
-//        beanConfig.setHost("localhost:8080");
-//        beanConfig.setBasePath("world/api");
-//        beanConfig.setResourcePackage("com.github.jinahya.mysql.world.ws.rs");
-//        beanConfig.setScan(true);
         final ObjectMapper mapper = new ObjectMapper();
         try {
-            mapper.readValue(
-                getClass().getResource("/bean-config.json"), BeanConfig.class);
+            final BeanConfig config = mapper.readValue(
+                getClass().getResource("/swagger/config.json"),
+                BeanConfig.class);
         } catch (final IOException ioe) {
             ioe.printStackTrace(System.err);
         }
 
         Json.mapper().registerModule(new JaxbAnnotationModule());
         Yaml.mapper().registerModule(new JaxbAnnotationModule());
-    }
-
-
-    @Override
-    public Set<Class<?>> getClasses() {
-
-        final Set<Class<?>> classes = new HashSet();
-
-        classes.add(CitiesResource.class);
-        classes.add(CountriesResource.class);
-        classes.add(CountryLanguagesResource.class);
-        classes.add(WorldXsdResource.class);
-
-        classes.add(ApiListingResource.class);
-        classes.add(SwaggerSerializers.class);
-
-        return classes;
     }
 
 
